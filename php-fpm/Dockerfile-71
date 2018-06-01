@@ -122,13 +122,13 @@ RUN if [ ${INSTALL_SWOOLE} = true ]; then \
     &&  docker-php-ext-enable swoole \
 ;fi
 
-###########################################################################
+#################################################
 # Phalcon EXTENSION
-###########################################################################
+#################################################
 ARG PHALCON_VERSION=3.4.0
 ARG PHALCON_EXT_PATH=php7/64bits
-
-RUN set -xe && \
+ARG INSTALL_PHALCON=false
+RUN if [ ${INSTALL_PHALCON} = true ]; then \
         # Compile Phalcon
         curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
         tar xzf ${PWD}/v${PHALCON_VERSION}.tar.gz && \
@@ -136,8 +136,8 @@ RUN set -xe && \
         # Remove all temp files
         rm -r \
             ${PWD}/v${PHALCON_VERSION}.tar.gz \
-            ${PWD}/cphalcon-${PHALCON_VERSION}
-#####################################
+            ${PWD}/cphalcon-${PHALCON_VERSION} \
+;fi
 
 # MongoDB:
 #####################################
