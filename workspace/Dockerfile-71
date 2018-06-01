@@ -259,6 +259,17 @@ RUN if [ ${INSTALL_SWOOLE} = true ]; then \
     ln -s /etc/php/7.1/mods-available/swoole.ini /etc/php/7.1/cli/conf.d/20-swoole.ini \
 ;fi
 
+#################################################
+# Phalcon EXTENSION
+#################################################
+ARG INSTALL_PHP_PHALCON=false
+RUN if [ ${INSTALL_PHP_PHALCON} = true ]; then \
+    git clone --depth=1 "git://github.com/phalcon/cphalcon.git" \
+    && cd cphalcon/build \
+    && ./install \
+    && echo 'extension=phalcon.so' >> /etc/php/${PHP_VERSION}/cli/conf.d/phalcon.ini \
+;fi
+
 #####################################
 # Drush:
 #####################################
