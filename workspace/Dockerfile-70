@@ -266,8 +266,8 @@ RUN if [ ${INSTALL_SWOOLE} = true ]; then \
 #################################################
 # Phalcon EXTENSION
 #################################################
-ARG INSTALL_PHP_PHALCON=false
-RUN if [ ${INSTALL_PHP_PHALCON} = true ]; then \
+ARG INSTALL_PHALCON=false
+RUN if [ ${INSTALL_PHALCON} = true ]; then \
     git clone --depth=1 "git://github.com/phalcon/cphalcon.git" \
     && cd cphalcon/build \
     && ./install \
